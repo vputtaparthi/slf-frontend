@@ -18,11 +18,16 @@ export default function Home() {
           .then((data) => setGoogleStatus(data));
   }
 
-  useEffect(() => {
+    function getAllStatuses() {
+        getAmazonStatus();
+        getGoogleStatus();
+    }
+
+    useEffect(() => {
+        getAllStatuses();
       const interval = setInterval(() => {
-          getAmazonStatus();
-          getGoogleStatus();
-      }, 5 * 1000)
+          getAllStatuses();
+      }, 60 * 1000)
 
       return () => clearInterval(interval)
   }, [])
